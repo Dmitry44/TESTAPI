@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TESTAPI.Core;
 using TESTAPI.Handlers;
 
 namespace TESTAPI.Controllers
@@ -16,30 +17,34 @@ namespace TESTAPI.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<IActionResult> GetAll([FromQuery] string url)
+        public async Task<ActionResult<IEnumerable<Beer>>> GetAll([FromQuery] string url)
         {
             return new JsonResult(await mediator.Send(new GetAll.Request(url)));
         }
 
         [HttpGet("price-exactly-17-99")]
-        public async Task<IActionResult> GetPriceExactly1799([FromQuery] string url)
+        public async Task<ActionResult<IEnumerable<BeerFlat>>> GetPriceExactly1799([FromQuery] string url)
         {
             return new JsonResult(await mediator.Send(new GetPriceExactly.Request(url, 17.99m)));
         }
 
+        public record CheapAndExpensiveBeersVm(
+            IEnumerable<BeerFlat> CheapestBeers,
+            IEnumerable<BeerFlat> MostExpensiveBeers);
+
         [HttpGet("cheapest-and-most-expensive-beers-per-liter")]
-        public async Task<IActionResult> CheapestAndMostExpensiveBeersPerLiter([FromQuery] string url)
+        public async Task<ActionResult<CheapAndExpensiveBeersVm>> GetCheapAndExpensiveBeersPerLiter([FromQuery] string url)
         {
             var cheapest = await mediator.Send(new GetCheapestBeersPerLiter.Request(url));
             var mostExpensive = await mediator.Send(new GetMostExpensiveBeersPerLiter.Request(url));
 
-            return new JsonResult(new { cheapest, mostExpensive });
+            return new JsonResult(new CheapAndExpensiveBeersVm(cheapest, mostExpensive));
         }
 
         [HttpGet("most-bottles")]
-        public IActionResult GetMostBottles([FromQuery] string url)
+        public async Task<ActionResult<IEnumerable<BeerFlat>>> GetMostBottles([FromQuery] string url)
         {
-            return new JsonResult(new { });
+            return new JsonResult(await mediator.Send(new GetMostBottles.Request(url)));
         }
     }
 }

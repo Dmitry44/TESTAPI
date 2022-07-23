@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TESTAPI", "TESTAPI\TESTAPI.csproj", "{F771F358-4EDE-43EB-BC8A-3961A4C1F1B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TESTAPI", "TESTAPI\TESTAPI.csproj", "{F771F358-4EDE-43EB-BC8A-3961A4C1F1B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TESTAPI.Tests", "TESTAPI.Tests\TESTAPI.Tests.csproj", "{4B1EDFF6-BB6D-4F6E-9378-A3DC205C7FB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TESTAPI.Tests", "TESTAPI.Tests\TESTAPI.Tests.csproj", "{4B1EDFF6-BB6D-4F6E-9378-A3DC205C7FB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4B0AFDCE-2D93-455F-B88E-EC51AC75C179}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

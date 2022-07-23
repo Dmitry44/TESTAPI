@@ -6,6 +6,7 @@ namespace TESTAPI.Services
     public class DataService : IDataService
     {
         private readonly HttpClient httpClient;
+        private readonly Dictionary<string, (IEnumerable<Beer> data, DateTime expiredAt)> cache = new();
 
         public DataService(HttpClient httpClient)
         {
@@ -14,13 +15,24 @@ namespace TESTAPI.Services
 
         public async Task<IEnumerable<Beer>> Load(string url)
         {
+            if (cache.TryGetValue(url, out var result))
+            {
+                if (DateTime.Now < result.expiredAt) return result.data;
+                else cache.Remove(url);
+            }
+
             var jsonOptions = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             };
-            var data = await httpClient.GetFromJsonAsync<IEnumerable<Beer>>(url, jsonOptions) ?? new List<Beer>();
+            var res = await httpClient.GetFromJsonAsync<IEnumerable<Beer>>(url, jsonOptions);
+            if (res is not null)
+            {
+                cache.Add(url, (res, DateTime.Now.AddMinutes(5)));
+                return res;
+            }
 
-            return data;
+            return new List<Beer>();
         }
     }
 }

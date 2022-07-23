@@ -20,6 +20,8 @@
             Price = article.Price;
             PricePerUnitText = article.PricePerUnitText;
             PricePerLiter = article.PricePerLiter;
+            BottleCount = article.BottleCount;
+            BottleVolume = article.BottleVolume;
         }
 
         public int BeerId { get; set; }
@@ -29,8 +31,6 @@
         public string Name { get; set; } = "";
 
         public int ArticleId { get; set; }
-
-        public string ShortDescription { get; set; } = "";
 
         public string Unit { get; set; } = "";
 
@@ -42,5 +42,10 @@
 
         public decimal? PricePerLiter { get; set; }
 
+        public string ShortDescription { get; set; } = "";
+
+        public int? BottleCount { get; private set; }
+
+        public decimal? BottleVolume { get; private set; }
     }
 }

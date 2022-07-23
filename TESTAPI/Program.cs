@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Diagnostics;
 using System.Reflection;
 using TESTAPI.Services;
 
@@ -22,6 +23,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler(c => c.Run(async context =>
+{
+    var exception = context.Features
+        ?.Get<IExceptionHandlerPathFeature>()
+        ?.Error;
+    var response = new { error = exception?.Message ?? "Internal Server Errror" };
+    await context.Response.WriteAsJsonAsync(response);
+}));
 
 app.UseHttpsRedirection();
 
