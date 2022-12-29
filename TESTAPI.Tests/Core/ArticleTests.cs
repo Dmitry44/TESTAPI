@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TESTAPI.Core;
+﻿using TESTAPI.Core;
 
 namespace TESTAPI.Tests.Core
 {
+    [Collection("SetCultureInfo")]
     public class ArticleTests
     {
         [Fact]
         public void BeerPricePerUnit_ShouldReturnValue_WhenPricePerUnitTextCorrect()
         {
             //arrange
-
+            
             //act
             var sut = new Article() { PricePerUnitText = "(2,50 €/Liter)" };
             var rez = sut.PricePerLiter;

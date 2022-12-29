@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TESTAPI.Core;
+﻿using TESTAPI.Core;
 using TESTAPI.Handlers;
 using TESTAPI.Tests.Services;
 
 namespace TESTAPI.Tests.Handlers
 {
+    [Collection("SetCultureInfo")]
     public class GetCheapestBeersPerLiterTests
     {
         [Fact]

@@ -1,7 +1,13 @@
+using System.Globalization;
 using MediatR;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Reflection;
 using TESTAPI.Services;
+
+// Set the culture for the API
+var cultureInfo = new CultureInfo("de-DE");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +31,7 @@ app.UseExceptionHandler(c => c.Run(async context =>
     var exception = context.Features
         ?.Get<IExceptionHandlerPathFeature>()
         ?.Error;
-    var response = new { error = exception?.Message ?? "Internal Server Errror" };
+    var response = new { error = exception?.Message ?? "Internal Server Error" };
     await context.Response.WriteAsJsonAsync(response);
 }));
 

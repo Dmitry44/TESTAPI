@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TESTAPI.Core;
-using TESTAPI.Services;
+﻿using TESTAPI.Services;
 
 namespace TESTAPI.Tests.Services
 {
+    [Collection("SetCultureInfo")]
     public class DataServiceTests
     {
         //[Fact]
