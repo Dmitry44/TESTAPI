@@ -25,7 +25,7 @@ The URL for the JSON-Data is the following:
 
 https://flapotest.blob.core.windows.net/test/ProductData.json
 
-## Demo Site (works till Aug 15th 2022)
+## Demo Site
 
 [Swagger UI](https://testapi20220723.azurewebsites.net/swagger/index.html)
 

@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using Mediator;
 using TESTAPI.Core;
 using TESTAPI.Services;
 
@@ -17,7 +17,7 @@ namespace TESTAPI.Handlers
                 this.dataService = dataService;
             }
 
-            public async Task<IEnumerable<BeerFlat>> Handle(Request request, CancellationToken cancellationToken)
+            public async ValueTask<IEnumerable<BeerFlat>> Handle(Request request, CancellationToken cancellationToken)
             {
                 var data = await dataService.Load(request.Url);
 

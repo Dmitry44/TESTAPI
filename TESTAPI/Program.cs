@@ -1,5 +1,5 @@
 using System.Globalization;
-using MediatR;
+using Mediator;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Reflection;
 using TESTAPI.Services;
@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<IDataService, DataService>();
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediator();
 
 builder.Services.AddControllers();
 
